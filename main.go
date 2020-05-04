@@ -3,17 +3,23 @@ package main
 import (
 	"fmt"
 	"os"
-	"reflect"
+	//"reflect"
+	"runtime"
 
 	"github.com/huguanghui/StartGo/commands"
 	"github.com/huguanghui/StartGo/ui"
+	"github.com/huguanghui/StartGo/utils"
 )
 
 func main() {
 	// os.args
-	fmt.Println(reflect.TypeOf(os.Args))
+	//fmt.Println(reflect.TypeOf(os.Args))
 
-	commands.StartCommands()
+	commands.CmdRunner.Execute(os.Args)
+
+	pathdir := utils.ConcatPaths("abc", "bbdd")
+	fmt.Println(pathdir)
+	fmt.Println(runtime.GOOS)
 
 	n := ui.UiTest()
 	fmt.Printf("%d\n", n)
