@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"os"
-	//"reflect"
 	"runtime"
 
 	"github.com/huguanghui/StartGo/commands"
@@ -23,4 +22,5 @@ func main() {
 
 	n := ui.UiTest()
 	fmt.Printf("%d\n", n)
+
 }
