@@ -22,9 +22,11 @@ require (
 	github.com/json-iterator/go v1.1.9 // indirect
 	github.com/kataras/golog v0.0.13 // indirect
 	github.com/kataras/iris v11.1.1+incompatible
+	github.com/kballard/go-shellquote v0.0.0-20180428030007-95032a82bc51
 	github.com/klauspost/compress v1.10.5 // indirect
 	github.com/kr/pretty v0.2.0 // indirect
 	github.com/mattn/go-colorable v0.1.6
+	github.com/mattn/go-isatty v0.0.12
 	github.com/microcosm-cc/bluemonday v1.0.2 // indirect
 	github.com/patrickmn/go-cache v2.1.0+incompatible
 	github.com/ryanuber/columnize v2.1.0+incompatible // indirect

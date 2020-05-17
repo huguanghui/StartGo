@@ -11,16 +11,10 @@ import (
 )
 
 func main() {
-	// os.args
-	//fmt.Println(reflect.TypeOf(os.Args))
-
 	commands.CmdRunner.Execute(os.Args)
 
+	ui.Println("Hello World!")
 	pathdir := utils.ConcatPaths("abc", "bbdd")
 	fmt.Println(pathdir)
 	fmt.Println(runtime.GOOS)
-
-	n := ui.UiTest()
-	fmt.Printf("%d\n", n)
-
 }

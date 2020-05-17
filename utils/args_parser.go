@@ -69,9 +69,9 @@ func (p *ArgsParser) Parse(args []string) ([]string, error) {
 		f := p.flagMap[canonicalFlagName]
 		if f == nil {
 			if len(flagName) == 2 {
-				logError("unknow shorthand flag: '%s' in %s", flagName[1:], arg)
+				logError("unknown shorthand flag: '%s' in %s", flagName[1:], arg)
 			} else {
-				logError("unknow flag: '%s'", flagName)
+				logError("unknown flag: '%s'", flagName)
 			}
 			return true
 		}
@@ -192,11 +192,17 @@ func NewArgsParser() *ArgsParser {
 
 func NewArgsParserWithUsage(usage string) *ArgsParser {
 	p := NewArgsParser()
-	f := `(-[a-zA-Z0-9@^]|--[a-z][a-z0-9-]+)(?:\[?[ =]([a-zA-Z_<>:=-]+\]?)))?`
-	re := regexp.MustCompile(fmt.Sprintf(`(?m)^\s*%s(?:,\s*%s)?$`, f, f))
+	f := `(-[a-zA-Z0-9@^]|--[a-z][a-z0-9-]+)(?:\[?[ =]([a-zA-Z_<>:=-]+\]?))?`
+	f1 := fmt.Sprintf(`(?m)^\s*%s(?:,\s*%s)?$`, f, f)
+	re := regexp.MustCompile(f1)
 	for _, match := range re.FindAllStringSubmatch(usage, -1) {
+		fmt.Println(len(match))
+		for a, b := range match {
+			fmt.Println("a=", a, ", b=", b)
+		}
 		n1 := match[1]
 		n2 := match[3]
+		fmt.Println(n1, n2)
 		hasValue := !(match[2] == "" || strings.HasSuffix(match[2], "]")) || match[4] != ""
 		var aliases []string
 		if len(n1) == 2 && len(n2) > 2 {

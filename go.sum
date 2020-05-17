@@ -66,6 +66,8 @@ github.com/kataras/iris v11.1.1+incompatible h1:c2iRKvKLpTYMXKdVB8YP/+A67NtZFt9k
 github.com/kataras/iris v11.1.1+incompatible/go.mod h1:ki9XPua5SyAJbIxDdsssxevgGrbpBmmvoQmo/A0IodY=
 github.com/kataras/pio v0.0.6 h1:Fk21upgXuB6VKHuH/sY13g6fzA5Gn+rKjV0ReXST484=
 github.com/kataras/pio v0.0.6/go.mod h1:NFfMp2kVP1rmV4N6gH6qgWpuoDKlrOeYi3VrAIWCGsE=
+github.com/kballard/go-shellquote v0.0.0-20180428030007-95032a82bc51 h1:Z9n2FFNUXsshfwJMBgNA0RU6/i7WVaAegv3PtuIHPMs=
+github.com/kballard/go-shellquote v0.0.0-20180428030007-95032a82bc51/go.mod h1:CzGEWj7cYgsdH8dAjBGEr58BoE7ScuLd+fwFZ44+/x8=
 github.com/klauspost/compress v1.10.5 h1:7q6vHIqubShURwQz8cQK6yIe/xC3IF0Vm7TGfqjewrc=
 github.com/klauspost/compress v1.10.5/go.mod h1:aoV0uJVorq1K+umq18yTdKaF57EivdYsUV+/s2qKfXs=
 github.com/konsorten/go-windows-terminal-sequences v1.0.1 h1:mweAR1A6xJ3oS2pRaGiHgQ4OO8tzTaLawm8vnODuwDk=

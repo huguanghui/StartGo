@@ -9,9 +9,18 @@ import (
 	"runtime"
 	"strings"
 	"time"
+
+	"github.com/huguanghui/StartGo/ui"
 )
 
 var timeNow = time.Now
+
+func Check(err error) {
+	if err != nil {
+		ui.Errorln(err)
+		os.Exit(1)
+	}
+}
 
 func ConcatPaths(paths ...string) string {
 	return strings.Join(paths, "/")
