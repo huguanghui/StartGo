@@ -102,8 +102,10 @@ func (cmd *Cmd) Exec() error {
 		}
 	}
 
+	fmt.Println("Binary: ", binary)
 	args := []string{binary}
 	args = append(args, cmd.Args...)
+	fmt.Println("args: ", args)
 
 	return syscall.Exec(binary, args, os.Environ())
 }

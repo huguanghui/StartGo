@@ -28,8 +28,9 @@ func Dir() (string, error) {
 		return cachedDir, nil
 	}
 
-	output, err := gitOutput("rev-parse", "q", "--git-dir")
+	output, err := gitOutput("rev-parse", "-q", "--git-dir")
 	if err != nil {
+		fmt.Println("err!")
 		return "", fmt.Errorf("Not a git repository (or any of the parent directories): .git")
 	}
 
@@ -143,6 +144,15 @@ func SymbolFullName(name string) (string, error) {
 	output, err := gitOutput("rev-parse", "--symbolic-full-name", name)
 	if err != nil {
 		return "", fmt.Errorf("Unknown revision or path not in the working tree: %s", name)
+	}
+
+	return output[0], nil
+}
+
+func Ref(ref string) (string, error) {
+	output, err := gitOutput("rev-parse", "-q", ref)
+	if err != nil {
+		return "", fmt.Errorf("Unknown revision or path not in the working tree: %s", ref)
 	}
 
 	return output[0], nil

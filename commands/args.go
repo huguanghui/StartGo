@@ -1,7 +1,7 @@
 package commands
 
 import (
-	//	"fmt"
+	"fmt"
 	"strings"
 )
 
@@ -15,6 +15,25 @@ type Args struct {
 	Terminator  bool
 	noForward   bool
 	Callbacks   []func() error
+}
+
+func (a *Args) GetParam(i int) string {
+	return a.Params[i]
+}
+
+func (a *Args) PrependParams(params ...string) {
+	a.Params = append(params, a.Params...)
+}
+
+func (a *Args) ParamsSize() int {
+	return len(a.Params)
+}
+
+func (a *Args) ReplaceParam(i int, item string) {
+	if i < 0 || i > a.ParamsSize()-1 {
+		panic(fmt.Sprintf("Index %d is out of bound", i))
+	}
+	a.Params[i] = item
 }
 
 func NewArgs(args []string) *Args {
@@ -34,6 +53,11 @@ func NewArgs(args []string) *Args {
 				globalFlags = append(globalFlags[:i], globalFlags[i+1:]...)
 			}
 		}
+	}
+
+	if len(args) != 0 {
+		command = args[0]
+		params = args[1:]
 	}
 
 	return &Args{

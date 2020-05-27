@@ -15,5 +15,6 @@ func StartCommands() {
 }
 
 type Command struct {
-	Usage string
+	Usage        string
+	GitExtension bool
 }
