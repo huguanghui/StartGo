@@ -15,6 +15,7 @@ require (
 	github.com/flosch/pongo2 v0.0.0-20200509134334-76fc00043fe1 // indirect
 	github.com/go-echarts/go-echarts v0.0.0-20190915064101-cbb3b43ade5d // indirect
 	github.com/gobuffalo/packr v1.30.1 // indirect
+	github.com/google/go-cmp v0.4.1
 	github.com/gorilla/schema v1.1.0 // indirect
 	github.com/iris-contrib/blackfriday v2.0.0+incompatible // indirect
 	github.com/iris-contrib/formBinder v5.0.0+incompatible // indirect
@@ -28,6 +29,7 @@ require (
 	github.com/mattn/go-colorable v0.1.6
 	github.com/mattn/go-isatty v0.0.12
 	github.com/microcosm-cc/bluemonday v1.0.2 // indirect
+	github.com/mitchellh/go-homedir v1.1.0
 	github.com/patrickmn/go-cache v2.1.0+incompatible
 	github.com/ryanuber/columnize v2.1.0+incompatible // indirect
 	github.com/shurcooL/sanitized_anchor_name v1.0.0 // indirect

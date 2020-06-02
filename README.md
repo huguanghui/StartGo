@@ -29,3 +29,7 @@ type tcpKeepAliveListener struct {
 net.Listen("tcp", addr)
 l.Accept()
 ```
+
+## hub 应用
+
+command ->  runner -> args

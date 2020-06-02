@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/bmizerany/assert"
 	"github.com/huguanghui/StartGo/fixtures"
+	"github.com/huguanghui/StartGo/internal/assert"
 )
 
 func TestGitDir(t *testing.T) {
