@@ -4,7 +4,9 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/huguanghui/StartGo/cmd"
 	"github.com/huguanghui/StartGo/git"
+	"github.com/huguanghui/StartGo/ui"
 	"github.com/kballard/go-shellquote"
 )
 
@@ -24,6 +26,13 @@ func (r *Runner) Lookup(name string) *Command {
 
 func (r *Runner) All() map[string]*Command {
 	return r.commands
+}
+
+func (r *Runner) Use(command *Command, aliases ...string) {
+	r.commands[command.Name()] = command
+	if len(aliases) > 0 {
+		r.commands[aliases[0]] = command
+	}
 }
 
 func (r *Runner) Execute(cliArgs []string) error {
@@ -56,8 +65,64 @@ func (r *Runner) Execute(cliArgs []string) error {
 		}
 	}
 
-	if forceFail {
-		fmt.Println("CmdName:", cmdName)
+	cmd := r.Lookup(cmdName)
+	if cmd != nil && cmd.Runnable() {
+		err := callRunnableCommand(cmd, args)
+		if err == nil && forceFail {
+			err = fmt.Errorf("")
+		}
+		return err
+	}
+
+	gitArgs := []string{}
+	if args.Command != "" {
+		gitArgs = append(gitArgs, args.Command)
+	}
+	gitArgs = append(gitArgs, args.Params...)
+
+	return git.Run(gitArgs...)
+}
+
+func callRunnableCommand(cmd *Command, args *Args) error {
+	err := cmd.Call(args)
+	if err != nil {
+		return err
+	}
+
+	cmds := args.Commands()
+	if args.Noop {
+		printCommands(cmds)
+	} else if err = executeCommands(cmds, len(args.Callbacks) == 0); err != nil {
+		return err
+	}
+
+	for _, fn := range args.Callbacks {
+		if err = fn(); err != nil {
+			return err
+		}
+	}
+
+	return nil
+}
+
+func printCommands(cmds []*cmd.Cmd) {
+	for _, c := range cmds {
+		ui.Println(c)
+	}
+}
+
+func executeCommands(cmds []*cmd.Cmd, execFinal bool) error {
+	for i, c := range cmds {
+		var err error
+		if execFinal && i == len(cmds)-1 {
+			err = c.Run()
+		} else {
+			err = c.Spawn()
+		}
+
+		if err != nil {
+			return err
+		}
 	}
 
 	return nil
